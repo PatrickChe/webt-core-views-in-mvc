@@ -1,7 +1,8 @@
 <?php
 
 // Load the HTML template
-$htmlTemplate = strpos('<div class="hotel-info">', file_get_contents('hotels.html'));
+$htmlTemplate = file_get_contents('hotels.html');
+$htmlOut = $htmlTemplate;
 
 // Define data for hotels
 $hotels = [
@@ -13,10 +14,10 @@ $hotels = [
 // Replace placeholders with actual data
 foreach ($hotels as $hotel) {
     $placeholder = "{hotel_name}";
-    $htmlTemplate = str_replace($placeholder, $hotel['name'], $htmlTemplate);
+    $htmlOut .= str_replace($placeholder, $hotel['name'], $htmlOut);
 
     $placeholder = "{hotel_description}";
-    $htmlTemplate = str_replace($placeholder, $hotel['description'], $htmlTemplate);
+    $htmlOut .= str_replace($placeholder, $hotel['description'], $htmlOut);
 
 }
 
@@ -32,6 +33,6 @@ echo <<<HTML
         /* Add your CSS styles for responsiveness here */
     </style>
 </head>
-HTML . $htmlTemplate;
+HTML . $htmlOut;
 
 ?>
