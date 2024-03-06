@@ -2,7 +2,8 @@
 
 // Load the HTML template
 $htmlTemplate = file_get_contents('hotels.html');
-$htmlOut = $htmlTemplate;
+
+$htmlOut = ''; // Initialize the output variable
 
 // Define data for hotels
 $hotels = [
@@ -11,16 +12,18 @@ $hotels = [
     ['name' => 'Hotel C', 'description' => 'Description of Hotel C...'],
 ];
 
-// Replace placeholders with actual data
+// Loop through hotels and replace placeholders
 foreach ($hotels as $hotel) {
-    $placeholder = "{hotel_name}";
-    $htmlOut .= str_replace($placeholder, $hotel['name'], $htmlOut);
+    // Replace placeholders with actual data
+    $html = $htmlTemplate;
+    $html = str_replace("{hotel_name}", $hotel['name'], $html);
+    $html = str_replace("{hotel_description}", $hotel['description'], $html);
 
-    $placeholder = "{hotel_description}";
-    $htmlOut .= str_replace($placeholder, $hotel['description'], $htmlOut);
-
+    // Append the modified HTML for each hotel to the output variable
+    $htmlOut .= $html;
 }
 
+// Display the final HTML output
 echo <<<HTML
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +36,14 @@ echo <<<HTML
         /* Add your CSS styles for responsiveness here */
     </style>
 </head>
-HTML . $htmlOut;
 
+<body>
+    <div class="container">
+        <h1>Hotels on the Strip</h1>
+        $htmlOut
+    </div>
+</body>
+
+</html>
+HTML;
 ?>
