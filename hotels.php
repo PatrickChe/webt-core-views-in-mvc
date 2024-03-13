@@ -32,9 +32,6 @@ echo <<<HTML
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hotel InfoSite</title>
-    <style>
-        /* Add your CSS styles for responsiveness here */
-    </style>
 </head>
 
 <body>
